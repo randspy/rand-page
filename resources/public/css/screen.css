@@ -1,7 +1,7 @@
 body {
   color: #555;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 h1 {
@@ -11,6 +11,15 @@ h1 {
 #header{
   margin-top: 1cm;
   margin-left: 5cm;
+}
+
+#main-about{
+  margin-top: 1cm;
+  margin-left: 10cm;
+}
+
+#clear{
+    clear: both;
 }
 
 #home-button{
@@ -36,4 +45,17 @@ h1 {
   font-size: 18px;
   text-decoration: none;
   background: #FF7519;
+}
+
+#link-text{
+  text-decoration: none;
+  color: #555;
+}
+
+#header-text{
+  float:left;
+  margin-top : 1cm;
+  margin-left: 2cm;
+  font-style:italic;
+  color: #FF6600;
 }
