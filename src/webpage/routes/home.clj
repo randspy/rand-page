@@ -4,7 +4,9 @@
 
 (defn home []
   (layout/common
-    [:a#button {:href "http://github.com"} "About"]))
+    [:div#header
+     [:div#home-button [:a#button {:href "/"} "Home"]]
+     [:div#about-button [:a#button {:href "http://github.com"} "About"]]]))
 
 (defroutes home-routes
   (GET "/" [] (home)))

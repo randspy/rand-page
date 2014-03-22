@@ -1,12 +1,23 @@
 body {
-    color: #555;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
+  color: #555;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
 }
 
 h1 {
-    text-align: center;
+  text-align: center;
 }
+
+#header{
+  margin-top: 1cm;
+  margin-left: 5cm;
+}
+
+#home-button{
+  float:left;
+  margin-right: 2px;
+}
+
 
 #button {
   height: 100px;
