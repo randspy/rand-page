@@ -3,7 +3,8 @@
             [webpage.views.layout :as layout]))
 
 (defn home []
-  (layout/common [:h1 "Hello World!"]))
+  (layout/common
+    [:a#button {:href "http://github.com"} "About"]))
 
 (defroutes home-routes
   (GET "/" [] (home)))
