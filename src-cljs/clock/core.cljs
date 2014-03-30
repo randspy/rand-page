@@ -1,4 +1,10 @@
-(ns clock.core)
+(ns clock.core
+  (:require [goog.dom :as dom])
+  (:import [goog.ui Zippy]))
 
-(defn ^:export main []
-  (.write js/document "<h1>This is a sparta!!</h1>" ))
+(defn getElementId [element]
+  (.getElementById js/document element))
+
+(defn ^:export main [parent-node]
+  (dom/append (getElementId parent-node)
+              (dom/createDom "h1" nil "This is a sparta!!")))
