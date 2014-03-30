@@ -9,15 +9,20 @@
   :plugins [[lein-ring "0.8.10"]
             [lein-cljsbuild "1.0.2"]]
   :cljsbuild {
-               :builds [{
-                          ; The path to the top-level ClojureScript source directory:
-                          :source-paths ["src-cljs"]
-                          ; The standard ClojureScript compiler options:
-                          ; (See the ClojureScript compiler documentation for details.)
-                          :compiler {
-                                      :output-to "resources/public/js/main.js"
-                                      :optimizations :whitespace
-                                      :pretty-print true}}]}
+               :builds  {
+                          :dev {
+                             :source-paths ["src-cljs"]
+                             :compiler {
+                                         :output-to "resources/public/js/main.js"
+                                         :optimizations :whitespace
+                                         :pretty-print true}}}
+
+                          :release {
+                           :source-paths ["src-cljs"]
+                           :compiler {
+                                       :output-to "resources/public/js/main.js"
+                                       :optimizations :advanced
+                                       :pretty-print true}}}
   :ring {:handler webpage.handler/app
          :init webpage.handler/init
          :destroy webpage.handler/destroy}

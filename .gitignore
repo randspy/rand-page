@@ -3,6 +3,7 @@
 /classes
 /checkouts
 /.idea
+/resources/public/js
 pom.xml
 *.jar
 *.class

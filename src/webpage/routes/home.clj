@@ -9,7 +9,7 @@
      [:div#home-button [:a#button {:href "/"} "Home"]]
      [:div#about-button [:a#button {:href "/about"} "About"]]
      [:script {:src "js/main.js" :type "text/javascript"}]
-     [:script "clock.main()"]]))
+     [:script "clock.core.main()"]]))
 
 (defroutes home-routes
   (GET "/" [] (home))
