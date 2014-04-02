@@ -59,3 +59,10 @@ h1 {
   font-style:italic;
   color: #FF6600;
 }
+
+#clock{
+  margin-top : 2cm;
+  margin-left : auto;
+  margin-right : auto;
+  width: 100px;
+}
