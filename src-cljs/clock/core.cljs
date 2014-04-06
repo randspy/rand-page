@@ -2,21 +2,46 @@
   (:require [clock.utils :as ut]
             [reagent.core :as reagent :refer [atom]]))
 
-(def timer (atom (js/Date.)))
+(defn cell [n bit]
+  [:div.clock-cell {:class (if (bit-test n bit)
+                             "light"
+                             "dark")}])
 
-(defn update-time [time]
-  ;; Update the time every 1/10 second to be accurate...
-  (js/setTimeout #(reset! time (js/Date.)) 100))
+(defn column [n is-hovering]
+  [:div.clock-col
+   [cell n 3]
+   [cell n 2]
+   [cell n 1]
+   [cell n 0]
+   [:div.clock-cell.number 
+     {:class (if is-hovering
+               "show"
+               "not-show")} n]])
 
-(defn clock []
-  (update-time timer)
-  (let [time-str (-> @timer .toTimeString (clojure.string/split " ") first)]
-    [:div.example-clock
-     time-str]))
+(defn column-pair [n is-hovering]
+  [:div.clock-pair
+   [column (quot n 10) is-hovering]
+   [column (mod n 10) is-hovering]])
 
-(defn clock-display []
-  [:div [clock]])
+(defn clock [date is-hovering toggle-hovering]
+  [:div.clock-main {:onMouseEnter toggle-hovering
+                    :onMouseLeave toggle-hovering}
+   [column-pair (.getHours date) is-hovering]
+   [column-pair (.getMinutes date) is-hovering]
+   [column-pair (.getSeconds date) is-hovering]])
+
+(def clock-state (atom {:time (js/Date.)
+                        :is-hovering false}))
+
+(defn update-time []
+  (swap! clock-state assoc :time (js/Date.)))
+
+(defn main []
+  (let [{:keys [time is-hovering]} @clock-state]
+    (js/setTimeout update-time 1000)
+    [clock time is-hovering
+     #(swap! clock-state update-in [:is-hovering] not)]))
 
 (defn ^:export run [parent-node]
-  (reagent/render-component [clock-display]
-                            (.getElementById js/document "clock")))
+  (reagent/render-component [main]
+    (.getElementById js/document parent-node)))
