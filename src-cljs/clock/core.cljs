@@ -1,6 +1,6 @@
 (ns clock.core
-  (:require [clock.utils :as ut]
-            [reagent.core :as reagent :refer [atom]]))
+  (:require
+    [reagent.core :as reagent :refer [atom]]))
 
 (defn cell [n bit]
   [:div.clock-cell {:class (if (bit-test n bit)
