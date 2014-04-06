@@ -5,7 +5,9 @@
                  [org.clojure/clojurescript "0.0-2173"]
                  [compojure "1.1.6"]
                  [hiccup "1.0.5"]
-                 [ring-server "0.3.1"]]
+                 [ring-server "0.3.1"]
+                 [reagent "0.4.2"]]
+
   :plugins [[lein-ring "0.8.10"]
             [lein-cljsbuild "1.0.2"]]
   :cljsbuild {
@@ -15,6 +17,7 @@
                              :compiler {
                                          :output-to "resources/public/js/main.js"
                                          :optimizations :whitespace
+                                         :preamble ["reagent/react.js"]
                                          :pretty-print true}}}
 
                           :release {
@@ -22,6 +25,7 @@
                            :compiler {
                                        :output-to "resources/public/js/main.js"
                                        :optimizations :advanced
+                                       :preamble ["reagent/react.js"]
                                        :pretty-print true}}}
   :ring {:handler webpage.handler/app
          :init webpage.handler/init

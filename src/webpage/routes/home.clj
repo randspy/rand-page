@@ -10,7 +10,8 @@
      [:div#about-button [:a#button {:href "/about"} "About"]]
      [:div#clock
       [:script {:src "js/main.js" :type "text/javascript"}]
-      [:script "clock.core.main(\"clock\")"]]]))
+      [:script {:src "http://fb.me/react-0.9.0.js"}]
+      [:script "clock.core.run(\"clock\")"]]]))
 
 (defroutes home-routes
   (GET "/" [] (home))

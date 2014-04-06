@@ -1,27 +1,22 @@
 (ns clock.core
-  (:require [goog.dom :as dom]
-            [goog.events :as gevents]
-            [goog.Timer :as timer]
-            [clock.utils :as ut]))
+  (:require [clock.utils :as ut]
+            [reagent.core :as reagent :refer [atom]]))
 
+(def timer (atom (js/Date.)))
 
-(defn getElementId [element]
-  (.getElementById js/document element))
+(defn update-time [time]
+  ;; Update the time every 1/10 second to be accurate...
+  (js/setTimeout #(reset! time (js/Date.)) 100))
 
-(defn update-clock []
-  (dom/setTextContent (getElementId "bit")
-                      (ut/parse-date-into-string (ut/get-time))))
+(defn clock []
+  (update-time timer)
+  (let [time-str (-> @timer .toTimeString (clojure.string/split " ") first)]
+    [:div.example-clock
+     time-str]))
 
-(defn create-button []
-  (dom/createDom "a" (clj->js {"id" "bit"})
-                 (ut/parse-date-into-string (ut/get-time))))
+(defn clock-display []
+  [:div [clock]])
 
-(defn add-to-html [parent-node]
-  (dom/append (getElementId parent-node)
-              (create-button)))
-
-(defn ^:export main [parent-node]
-  (let [time (goog.Timer. 1000)]
-    (gevents/listen time timer/TICK update-clock)
-    (. time (start))
-    (add-to-html parent-node)))
+(defn ^:export run [parent-node]
+  (reagent/render-component [clock-display]
+                            (.getElementById js/document "clock")))
