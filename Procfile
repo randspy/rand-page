@@ -1,0 +1,1 @@
+web: java $JVM_OPTS -cp target/webpage.jar clojure.main -m webpage.handler $PORT

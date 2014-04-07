@@ -5,7 +5,9 @@
             [hiccup.middleware :refer [wrap-base-url]]
             [compojure.handler :as handler]
             [compojure.route :as route]
-            [webpage.routes.home :refer [home-routes]]))
+            [webpage.routes.home :refer [home-routes]])
+  (:use [compojure.core]
+        [ring.adapter.jetty :as ring]))
 
 (defn init []
   (println "webpage is starting"))
@@ -23,3 +25,6 @@
       (wrap-base-url)))
 
 
+(defn -main [port]
+  (run-jetty (handler/site app-routes)
+     {:port (read-string port) :join? false}))

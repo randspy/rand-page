@@ -10,6 +10,11 @@
 
   :plugins [[lein-ring "0.8.10"]
             [lein-cljsbuild "1.0.2"]]
+
+  :main webpage.handler
+  :min-lein-version "2.0.0"
+  :uberjar-name "webpage.jar"
+
   :cljsbuild {
                :builds  {
                           :dev {
@@ -18,7 +23,7 @@
                                          :output-to "resources/public/js/main.js"
                                          :optimizations :whitespace
                                          :preamble ["reagent/react.js"]
-                                         :pretty-print true}}}
+                                         :pretty-print true}}
 
                           :release {
                            :source-paths ["src-cljs"]
@@ -26,7 +31,7 @@
                                        :output-to "resources/public/js/main.js"
                                        :optimizations :advanced
                                        :preamble ["reagent/react.js"]
-                                       :pretty-print true}}}
+                                       :pretty-print true}}}}
   :ring {:handler webpage.handler/app
          :init webpage.handler/init
          :destroy webpage.handler/destroy}
