@@ -17,7 +17,7 @@
 
 (defroutes app-routes
   (route/resources "/")
-  (route/not-found "Not Found"))
+  (route/not-found "This is not a webpage you are looking for"))
 
 (def app
   (-> (routes home-routes app-routes)
@@ -26,5 +26,5 @@
 
 
 (defn -main [port]
-  (run-jetty (handler/site app-routes)
+  (run-jetty (handler/site (routes home-routes app-routes))
      {:port (read-string port) :join? false}))

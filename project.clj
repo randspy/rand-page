@@ -6,6 +6,7 @@
                  [compojure "1.1.6"]
                  [hiccup "1.0.5"]
                  [ring-server "0.3.1"]
+                 [lib-noir "0.7.9"]
                  [reagent "0.4.2"]]
 
   :plugins [[lein-ring "0.8.10"]
