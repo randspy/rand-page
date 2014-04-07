@@ -1,0 +1,91 @@
+#navigationMenu li{
+	list-style:none;
+	height:39px;
+	padding:2px;
+	width:40px;
+}
+
+#navigationMenu span{
+	/* Container properties */
+	width:0;
+	left:38px;
+	padding:0;
+	position:absolute;
+	overflow:hidden;
+
+	/* Text properties */
+	font-family:'Myriad Pro',Arial, Helvetica, sans-serif;
+	font-size:18px;
+	font-weight:bold;
+	letter-spacing:0.6px;
+	white-space:nowrap;
+	line-height:38px;
+
+	/* CSS3 Transition: */
+	-webkit-transition: 0.25s;
+
+	/* Future proofing (these do not work yet): */
+	-moz-transition: 0.25s;
+	transition: 0.25s;
+}
+
+#navigationMenu a{
+	background:url('../img/navigation.jpg') no-repeat;
+
+	height:38px;
+	width:38px;
+	display:block;
+	position:relative;
+}
+
+/* General hover styles */
+
+#navigationMenu a:hover span{ width:auto; padding:0 20px;overflow:visible; }
+#navigationMenu a:hover{
+	text-decoration:none;
+
+	/* CSS outer glow with the box-shadow property */
+	-moz-box-shadow:0 0 5px #9ddff5;
+	-webkit-box-shadow:0 0 5px #9ddff5;
+	box-shadow:0 0 5px #9ddff5;
+}
+
+/* Home Button */
+
+#navigationMenu .home {	background-position:0 0;}
+#navigationMenu .home span{
+	background-color:#7da315;
+	color:white;
+}
+
+/* Info Button */
+
+#navigationMenu .about { background-position:-38px 0;}
+#navigationMenu .about span{
+	background-color:#1e8bb4;
+	color:white;
+}
+
+/* Article Button */
+
+#navigationMenu .articles { background-position:-76px 0;}
+#navigationMenu .articles span{
+	background-color:#c86c1f;
+	color:white;
+}
+
+/* LinkedIn Button */
+
+#navigationMenu .linkedin { background-position:-114px 0;}
+#navigationMenu .linkedin span{
+	background-color:#5959BD;
+	color:white;
+}
+
+/* Github Button */
+
+#navigationMenu .github { background-position:-152px 0;}
+#navigationMenu .github span{
+	background-color:#383430;
+	color:white;
+}
