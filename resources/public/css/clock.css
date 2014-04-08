@@ -15,7 +15,7 @@
     height: 80px;
     text-align: center;
     margin: 0 20px 20px 0;
-    border-radius: 50%;
+    border-radius: 20%;
 }
 .clock-cell.dark {
     background-color: #FFD1B2;
