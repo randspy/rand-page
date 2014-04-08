@@ -25,7 +25,7 @@
                              :compiler {
                                          :output-to "resources/public/js/main.js"
                                          :optimizations :advanced
-                                         :preamble ["reagent/react.js"]}}
+                                         :preamble ["reagent/react.min.js"]}}
                           :development {
                              :source-paths ["src-cljs"]
                              :compiler {
