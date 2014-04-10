@@ -4,6 +4,7 @@
 /checkouts
 /.idea
 /resources/public/js
+/resources/public/img/.thumbnails
 pom.xml
 *.jar
 *.class

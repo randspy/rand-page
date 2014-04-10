@@ -5,17 +5,17 @@
     margin-top: 155px;
     float: left;
     font-size: 28px;
-    line-height: 34px;
-    width: 645px;
+    width: 700px;
     cursor: pointer;
 }
 
 .clock-cell {
     width: 80px;
     height: 80px;
-    text-align: center;
     margin: 0 20px 20px 0;
     border-radius: 20%;
+    display:inline-block;
+    float:left;
 }
 .clock-cell.dark {
     background-color: #FFD1B2;
@@ -26,21 +26,16 @@
 
 .clock-cell.number.show{
   color: #FF6600;
+  text-align: center;
+  margin-top: 23px;
 }
 
 .clock-cell.number.not-show{
   color: transparent;
 }
 
-.clock-col {
-    margin: 0;
-    float: left;
-}
-
-.clock-pair {
-    margin: 0;
-    float: left;
-}
-.clock-pair:not(:last-child) {
-    margin-right: 20px;
+.clock-row {
+    float:left;
+    height: 80px;
+    margin-bottom: 20px;
 }

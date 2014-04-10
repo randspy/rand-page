@@ -30,6 +30,8 @@
                              :source-paths ["src-cljs"]
                              :compiler {
                                          :output-to "resources/public/js/main.js"
+                                         :output-dir "resources/public/js"
+                                         :source-map "resources/public/js/main.js.map"
                                          :optimizations :whitespace
                                          :preamble ["reagent/react.js"]
                                          :pretty-print true}}}
