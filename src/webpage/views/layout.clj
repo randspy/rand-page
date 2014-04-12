@@ -5,6 +5,9 @@
   (html5
     [:head
      [:title "randspy.com"]
+     [:link {:href "//fonts.googleapis.com/css?family=Esteban:400" ,
+             :rel "stylesheet"
+             :type "text/css"}]
      (include-css "/css/screen.css")
      (include-css "/css/menu.css")
      (include-css "/css/clock.css")

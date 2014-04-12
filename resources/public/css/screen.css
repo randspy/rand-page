@@ -1,9 +1,10 @@
 body {
   color: #0F0F0F;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Esteban', Helvetica, Arial, sans-serif;
   font-size: 18px;
   margin-top : 0px;
   margin-left : 0px;
+  background: #FCFCFC;
 }
 
 #left{
