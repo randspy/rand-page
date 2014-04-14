@@ -5,12 +5,14 @@
             [hiccup.middleware :refer [wrap-base-url]]
             [compojure.handler :as handler]
             [compojure.route :as route]
-            [webpage.routes.home :refer [home-routes]])
+            [webpage.routes.home :refer [home-routes]]
+            [webpage.routes.articles :refer [read-all-articles-from-files]])
   (:use [compojure.core]
         [ring.adapter.jetty :as ring]))
 
 (defn init []
-  (println "webpage is starting"))
+  (println "webpage is starting")
+  (read-all-articles-from-files))
 
 (defn destroy []
   (println "webpage is shutting down"))
@@ -22,7 +24,8 @@
 (def app
   (-> (routes home-routes app-routes)
       (handler/site)
-      (wrap-base-url)))
+      (wrap-base-url)
+      ))
 
 
 (defn -main [port]

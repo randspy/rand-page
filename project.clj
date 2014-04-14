@@ -7,7 +7,9 @@
                  [hiccup "1.0.5"]
                  [ring-server "0.3.1"]
                  [lib-noir "0.7.9"]
-                 [reagent "0.4.2"]]
+                 [reagent "0.4.2"]
+                 [me.raynes/cegdown "0.1.1"]
+                 [stasis "1.0.0"]]
 
   :plugins [[lein-ring "0.8.10"]
             [lein-cljsbuild "1.0.2"]]

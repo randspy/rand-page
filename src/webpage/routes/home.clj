@@ -2,7 +2,8 @@
   (:require [compojure.core :refer :all]
             [webpage.views.layout :as layout]
             [webpage.routes.menu :as menu]
-            [webpage.routes.about :as about-page]))
+            [webpage.routes.about :as about-page]
+            [webpage.routes.articles :as articles]))
 
 (defn home []
   (layout/common
@@ -17,4 +18,5 @@
 
 (defroutes home-routes
   (GET "/" [] (home))
-  (GET "/about" [] (about-page/about)))
+  (GET "/about" [] (about-page/about))
+  (GET "/articles" [] (articles/articles)))
