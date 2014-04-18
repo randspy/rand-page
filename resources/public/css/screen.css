@@ -36,3 +36,9 @@ body {
 #article-content{
    font-size: 18px;
 }
+
+#article-link{
+   font-size: 23px;
+   text-decoration: none;
+   color: #0F0F0F;
+}

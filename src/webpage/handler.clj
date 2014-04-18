@@ -6,7 +6,8 @@
             [compojure.handler :as handler]
             [compojure.route :as route]
             [webpage.routes.home :refer [home-routes]]
-            [webpage.routes.articles :refer [read-all-articles-from-files]])
+            [webpage.routes.articles :refer
+             [read-all-articles-from-files article-routes]])
   (:use [compojure.core]
         [ring.adapter.jetty :as ring]))
 
@@ -22,7 +23,7 @@
   (route/not-found "This is not a webpage you are looking for"))
 
 (def app
-  (-> (routes home-routes app-routes)
+  (-> (routes home-routes article-routes app-routes)
       (handler/site)
       (wrap-base-url)
       ))
