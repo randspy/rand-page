@@ -5,33 +5,26 @@
 
 ;;separate a name from a text
 (expect {:name "name" :text "text"}
-        (separate-name-from-text "name\n-----\ntext"))
+        (separate-name-from-text "name\n-----\ntext" #"\n-----\n"))
 
 ;;when there is no text an empty one should be returden
 (expect {:name "name" :text ""}
-        (separate-name-from-text "name\n-----\n"))
+        (separate-name-from-text "name\n-----\n" #"\n-----\n"))
 (expect {:name "name" :text ""}
-        (separate-name-from-text "name"))
+        (separate-name-from-text "name" #"\n-----\n"))
 
 ;;when input is empty should return empty
 (expect {:name "" :text ""}
-        (separate-name-from-text ""))
-
-(expect {"/text.md" {:name "name" :text "text"}
-         "/text2.md" {:name "name2" :text "text2"}}
-         (parse-posts {"/text.md" "name\n-----\ntext"
-                       "/text2.md" "name2\n-----\ntext2"}))
+        (separate-name-from-text "" #"\n-----\n"))
 
 ;;generate a list of html tags for a post structure
-(expect [:div
-         [:div [:a#article-link {:href "/articles/text2"} "name2"]]
-         [:div [:a#article-link {:href "/articles/text"} "name"]]]
+(expect [:ul
+         [:li [:a#article-link {:href "/articles/text2"} "name2"]]
+         [:li [:a#article-link {:href "/articles/text"} "name"]]]
         (generate-all-articles-titles
           "/articles/"
           {"text" {:name "name" :text "text"}
            "text2" {:name "name2" :text "text2"}}))
-
-
 
 ;;extract file name without slash and a filetype
 (expect "test"
@@ -40,5 +33,5 @@
 
 ;;extract link from a file name
 (expect {"text" "name"}
-        (file->link {"/text.md" "name"}
+        (post-filename-to-article-page-link {"/text.md" "name"}
                     extract-filename-base))

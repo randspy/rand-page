@@ -7,6 +7,11 @@ body {
   background: #FCFCFC;
 }
 
+#h1{
+  font-size: 28px;
+  margin-bottom: 20 px;
+}
+
 #left{
  width: 100px;
  height: 300px;
@@ -41,4 +46,11 @@ body {
    font-size: 23px;
    text-decoration: none;
    color: #0F0F0F;
+}
+
+#footer{
+  height: 70px;
+  margin-top: 50 px;
+  margin-bottom: 20 px;
+  text-decoration: none;
 }

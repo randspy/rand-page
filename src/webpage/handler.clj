@@ -30,5 +30,5 @@
 
 
 (defn -main [port]
-  (run-jetty (handler/site (routes home-routes app-routes))
+  (run-jetty (handler/site (routes home-routes article-routes app-routes))
      {:port (read-string port) :join? false}))
