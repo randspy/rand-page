@@ -10,6 +10,9 @@
                  [lib-noir "0.7.9"]
                  [reagent "0.4.2"]
                  [me.raynes/cegdown "0.1.1"]
+                 [clygments "0.1.1"]
+                 [markdown-clj "0.9.43"]
+                 [enlive "1.1.5"]
                  [stasis "1.0.0"]
                  [expectations "2.0.6"]]
 
