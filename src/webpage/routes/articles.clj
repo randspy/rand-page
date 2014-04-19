@@ -66,7 +66,7 @@
 
 (defn read-all-articles-from-files []
   (let [row-articles (post-filename-to-article-page-link
-                       (stasis/slurp-directory "posts/" #".*\.(md)$")
+                       (stasis/slurp-directory "resources/public/posts/" #".*\.(md)$")
                        extract-filename-base)]
     (reset! all-articles (parse-markdown-file-into-html-structure row-articles))
     (reset! articles-list (generate-all-articles-titles
