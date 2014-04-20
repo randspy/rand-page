@@ -10,6 +10,7 @@
                  [reagent "0.4.2"]
                  [me.raynes/cegdown "0.1.1"]
                  [clygments "0.1.1"]
+                 [markdown-clj "0.9.43"]
                  [enlive "1.1.5"]
                  [expectations "2.0.6"]]
 
