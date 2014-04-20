@@ -7,7 +7,7 @@
             [compojure.route :as route]
             [webpage.routes.home :refer [home-routes]]
             [webpage.routes.articles :refer
-             [read-all-articles-from-files article-routes]])
+            [read-all-articles-from-files article-routes]])
   (:use [compojure.core]
         [ring.adapter.jetty :as ring]))
 
@@ -30,5 +30,6 @@
 
 
 (defn -main [port]
+  (read-all-articles-from-files)
   (run-jetty (handler/site (routes home-routes article-routes app-routes))
      {:port (read-string port) :join? false}))

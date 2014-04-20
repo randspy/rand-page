@@ -8,8 +8,9 @@
             [me.raynes.cegdown :as ceg]
             [clygments.core :as cly]
             [net.cgrand.enlive-html :as enlive]
-            [stasis.core :as stasis])
-  (:import (java.io StringReader)))
+            [clojure.java.io :as io])
+  (:import (java.io StringReader))
+  (:gen-class))
 
 
 (defn separate-name-from-text [article separator]
@@ -18,15 +19,6 @@
         text (or (second separated) "")]
     {:name name
      :text text}))
-
-(defn extract-filename-base [text]
-  (clojure.string/replace
-    (clojure.string/replace text #"/" "")
-    #".md" ""))
-
-(defn post-filename-to-article-page-link [posts func]
-  (into {} (for [[key value] posts]
-             [(func key) value])))
 
 (defn generate-all-articles-titles [path articles]
   (vec (cons :ul
@@ -64,10 +56,19 @@
 (def all-articles (atom {}))
 (def articles-list (atom {}))
 
+(defn read-file [filename]
+  (->
+    filename
+    (clojure.java.io/resource)
+    (slurp)))
+
+(defn slurp-directory [dir post-names type]
+  (into {} (map (fn [post-name]
+                  (let [full-file-path (str dir post-name type)]
+                    [post-name (read-file full-file-path)])) post-names)))
+
 (defn read-all-articles-from-files []
-  (let [row-articles (post-filename-to-article-page-link
-                       (stasis/slurp-directory "resources/public/posts/" #".*\.(md)$")
-                       extract-filename-base)]
+  (let [row-articles (slurp-directory "public/posts/" ["efficiency"] ".md")]
     (reset! all-articles (parse-markdown-file-into-html-structure row-articles))
     (reset! articles-list (generate-all-articles-titles
                             "/articles/"

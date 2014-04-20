@@ -7,13 +7,10 @@
                  [compojure "1.1.6"]
                  [hiccup "1.0.5"]
                  [ring-server "0.3.1"]
-                 [lib-noir "0.7.9"]
                  [reagent "0.4.2"]
                  [me.raynes/cegdown "0.1.1"]
                  [clygments "0.1.1"]
-                 [markdown-clj "0.9.43"]
                  [enlive "1.1.5"]
-                 [stasis "1.0.0"]
                  [expectations "2.0.6"]]
 
   :plugins [[lein-ring "0.8.10"]
@@ -24,6 +21,7 @@
   :main webpage.handler
   :min-lein-version "2.0.0"
   :uberjar-name "webpage.jar"
+  :uberjar {:aot [webpage.handler]}
 
   :cljsbuild {
                :builds  {

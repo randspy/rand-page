@@ -25,13 +25,3 @@
           "/articles/"
           {"text" {:name "name" :text "text"}
            "text2" {:name "name2" :text "text2"}}))
-
-;;extract file name without slash and a filetype
-(expect "test"
-        (extract-filename-base "/test.md"))
-
-
-;;extract link from a file name
-(expect {"text" "name"}
-        (post-filename-to-article-page-link {"/text.md" "name"}
-                    extract-filename-base))
