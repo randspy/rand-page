@@ -1,5 +1,8 @@
-Efficiency
+date 20/04/2014
+title Efficiency
 -----
+Efficiency
+----
 Some time ago I had a Valgrind training and one of the topics discussed was program efficiency.
 Especially interesting is how lack of knowledge about an underlying architecture can really hit you.
 Normally in object oriented world we do not care what is done down there.

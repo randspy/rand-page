@@ -13,12 +13,31 @@
   (:gen-class))
 
 
-(defn separate-name-from-text [article separator]
+(defn split-token-from-text
+  "From 'test name token' we will get {:test 'name token'}"
+  [token]
+  (let [separated (str/split token #" ")
+        key (keyword (first separated))
+        content (str/join " " (rest separated))]
+    [key content]))
+
+(defn separate-header-elements [elements]
+  (let [separated (str/split elements #"\n")]
+    (flatten
+      (functor/fmap split-token-from-text separated))))
+
+(defn separate-header-from-text [article separator]
   (let [separated (str/split article separator)
-        name (first separated)
+        header (first separated)
         text (or (second separated) "")]
-    {:name name
+    {:header header
      :text text}))
+
+(defn separate-article-elements [article]
+  (let [separated (separate-header-from-text article #"\n-----\n")
+        header (:header separated)
+        text (:text separated)]
+    (apply hash-map (flatten [(separate-header-elements header) :text text]))))
 
 (defn generate-all-articles-titles [path articles]
   (vec (cons :ul
@@ -26,7 +45,8 @@
                   (map (fn [article]
                          [:a#article-link
                           {:href (str path (first article))}
-                          (:name (second article))]) articles)))))
+                          (str/join " " [(:date (second article)) " - "
+                                         (:title (second article))])]) articles)))))
 
 (defn extract-code-tag-from-pre-tag [highlighted]
   (-> highlighted
@@ -51,7 +71,7 @@
 
 (defn parse-markdown-file-into-html-structure [posts]
   (into {} (for [[key value] posts]
-             [key (highlight-code-tag (ceg/to-html value [:fenced-code-blocks]))])))
+             [key (highlight-code-tag (ceg/to-html (:text value) [:fenced-code-blocks]))])))
 
 (def all-articles (atom {}))
 (def articles-list (atom {}))
@@ -67,21 +87,13 @@
                   (let [full-file-path (str dir post-name type)]
                     [post-name (read-file full-file-path)])) post-names)))
 
-(defn read-all-articles-from-files []
-  (let [row-articles (slurp-directory "public/posts/" ["efficiency"] ".md")]
-    (reset! all-articles (parse-markdown-file-into-html-structure row-articles))
-    (reset! articles-list (generate-all-articles-titles
-                            "/articles/"
-                            (functor/fmap
-                              #(separate-name-from-text % #"\n-----\n") row-articles)))))
-
 (defn generate-page-with-list-of-articles []
   (layout/common
     [:div#left
      (menu/vertical-menu)]
     [:div#right
       [:div#about-text
-        [:div#h1 "Articles"]
+        [:div#h1 "Articles :"]
         [:div @articles-list]]]))
 
 (defn generate-article-page [text]
@@ -95,4 +107,15 @@
 
 (defroutes article-routes
            (GET "/articles" [] (generate-page-with-list-of-articles))
-           (GET "/articles/efficiency" [] (generate-article-page "efficiency")))
+           (GET "/articles/2014-04-20-efficiency" []
+                (generate-article-page "2014-04-20-efficiency"))
+           (GET "/articles/2014-05-08-function-params" []
+                (generate-article-page "2014-05-08-function-params")))
+
+(defn read-all-articles-from-files []
+  (let [row-articles (slurp-directory "public/posts/" ["2014-04-20-efficiency"
+                                                       "2014-05-08-function-params"] ".md")
+        articles-elements (functor/fmap
+                            #(separate-article-elements %) row-articles)]
+    (reset! all-articles (parse-markdown-file-into-html-structure articles-elements))
+    (reset! articles-list (generate-all-articles-titles "/articles/" articles-elements))))
