@@ -49,8 +49,20 @@ body {
 }
 
 #footer{
-  height: 70px;
-  margin-top: 50 px;
-  margin-bottom: 20 px;
+  height: 100px;
+}
+
+#footer-empty-space{
+  height: 20px;
+}
+
+#reverse{
+  background-color: #0099FF;
+  color: #FFFFFF !important;
+  cursor: pointer;
   text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  padding: 6px 18px;
+  text-align: center;
 }

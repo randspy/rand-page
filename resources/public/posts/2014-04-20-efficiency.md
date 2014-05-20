@@ -1,7 +1,7 @@
 date 20/04/2014
 title Efficiency
 -----
-Efficiency
+<h2 id="reverse">Efficiency</h2>
 ----
 Some time ago I had a Valgrind training and one of the topics discussed was program efficiency.
 Especially interesting is how lack of knowledge about an underlying architecture can really hit you.

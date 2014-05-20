@@ -103,7 +103,9 @@
     [:div#right
      [:div#about-text
        (get @all-articles text)]
-     [:div#footer [:a {:href "/articles"} "Back"]]]))
+     [:div#footer
+      [:div#footer-empty-space]
+      [:a#reverse {:href "/articles"} "Back"]]]))
 
 (defroutes article-routes
            (GET "/articles" [] (generate-page-with-list-of-articles))
