@@ -5,7 +5,7 @@ title Function's parameters
 <h2 id="reverse">Function's parameters</h2>
 
 With age I have started to be more restrictive with a number of parameters we can pass into a function/method.
-Few years ago I would not care. Nowadays I believe that less is better. Zero is ideal. One and two are ok.
+Few years ago I would not care. Nowadays I believe that less is better. Zero is ideal. One or two are ok.
 With three and more you should start thinking about refactoring.
 
 

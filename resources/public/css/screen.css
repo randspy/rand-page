@@ -4,7 +4,7 @@ body {
   font-size: 18px;
   margin-top : 0px;
   margin-left : 0px;
-  background: #FCFCFC;
+  background: white;
 }
 
 #h1{
@@ -46,6 +46,33 @@ body {
    font-size: 23px;
    text-decoration: none;
    color: #0F0F0F;
+}
+
+#article-in-list {
+  margin: 15px;
+  clear:both;
+}
+
+#article-in-list:hover {
+    font-weight: bold;
+}
+
+#article-date-frame{
+  background-color:#0099FF;
+  padding: 1px 1px;
+  float: left;
+  margin-top: 5px;
+}
+
+#article-date {
+  background-color:white;
+  padding: 5px 20px;
+  color:#0099FF;
+}
+
+#article-name {
+  float: left;
+  margin-top: 5px;
 }
 
 #footer{

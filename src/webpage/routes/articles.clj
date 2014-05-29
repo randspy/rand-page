@@ -36,13 +36,16 @@
     (apply hash-map (flatten [(separate-header-elements header) :text text]))))
 
 (defn generate-all-articles-titles [path articles]
-  (vec (cons :ul
-             (map (fn [elem] [:li elem])
+  (vec (cons :div
+             (map (fn [elem] [:div elem])
                   (map (fn [article]
                          [:a#article-link
                           {:href (str path (first article))}
-                          (str/join " " [(:date (second article)) " - "
-                                         (:title (second article))])]) articles)))))
+                          [:div#article-in-list
+                           [:div#article-date-frame
+                            [:div#article-date (:date (second article))]]
+                           [:div#article-name
+                            [:div#reverse (:title (second article))]]]]) articles)))))
 
 (def all-articles (atom {}))
 (def articles-list (atom {}))
@@ -64,7 +67,6 @@
      (menu/vertical-menu)]
     [:div#right
       [:div#about-text
-        [:div#h1 "Articles :"]
         [:div @articles-list]]]))
 
 (defn generate-article-page [text]
@@ -86,8 +88,8 @@
                 (generate-article-page "2014-05-08-function-params")))
 
 (defn read-all-articles-from-files []
-  (let [row-articles (slurp-directory "public/posts/" ["2014-04-20-efficiency"
-                                                       "2014-05-08-function-params"] ".md")
+  (let [row-articles (slurp-directory "public/posts/" ["2014-05-08-function-params"
+                                                        "2014-04-20-efficiency"] ".md")
         articles-elements (functor/fmap
                             #(separate-article-elements %) row-articles)]
     (reset! all-articles (md/parse-markdown-file-into-html-structure articles-elements))
