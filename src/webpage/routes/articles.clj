@@ -80,16 +80,22 @@
       [:div#footer-empty-space]
       [:a#reverse {:href "/articles"} "Back"]]]))
 
-(defroutes article-routes
-           (GET "/articles" [] (generate-page-with-list-of-articles))
-           (GET "/articles/2014-04-20-efficiency" []
-                (generate-article-page "2014-04-20-efficiency"))
-           (GET "/articles/2014-05-08-function-params" []
-                (generate-article-page "2014-05-08-function-params")))
+(def articles-file-names
+  ["2014-05-08-function-params"
+   "2014-04-20-efficiency"])
+
+(defn one-article-mapping [path article]
+  `(GET ~(str path "/" article) [] (generate-article-page ~article)))
+
+(defmacro article-link-mapping []
+  `(compojure.core/routes
+     (GET "/articles" [] (generate-page-with-list-of-articles))
+     ~@(map #(one-article-mapping "/articles" %) articles-file-names)))
+
+(def article-route (article-link-mapping))
 
 (defn read-all-articles-from-files []
-  (let [row-articles (slurp-directory "public/posts/" ["2014-05-08-function-params"
-                                                        "2014-04-20-efficiency"] ".md")
+  (let [row-articles (slurp-directory "public/posts/" articles-file-names ".md")
         articles-elements (functor/fmap
                             #(separate-article-elements %) row-articles)]
     (reset! all-articles (md/parse-markdown-file-into-html-structure articles-elements))
